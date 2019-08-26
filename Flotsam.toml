@@ -1,0 +1,13 @@
+[package]
+# required
+name = "libweyl"
+type = "lib"
+build = "make"
+repository = "github.com/briandowns/libweyl"
+version = "0.1.0"
+description = "libweyl is a simple C implementation of the Middle Random Weyl Sequence generator"
+homepage = ""
+authors = ["Brian J. Downs"]
+
+[dependencies]
+
