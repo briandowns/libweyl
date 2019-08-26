@@ -34,13 +34,12 @@
 #include "unity/unity.h"
 
 void
-test_return_size(void)
+test_new_64_bit(void)
 {
     struct timespec spec;
     clock_gettime(CLOCK_REALTIME, &spec);
     struct rng* r = rng_new(spec.tv_nsec);
     uint64_t num = rng_uint64(r);
-    printf("%lu\n", sizeof(num));
 }
 
 int
@@ -48,7 +47,7 @@ main(void)
 {
     UNITY_BEGIN();
 
-    RUN_TEST(test_return_size);
+    RUN_TEST(test_new_64_bit);
 
     return UNITY_END();
 }
