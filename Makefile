@@ -13,32 +13,32 @@ UNAME_S := $(shell uname -s)
 
 ifeq ($(UNAME_S),Linux)
 $(NAME).$(VERSION).so:
-	$(CC) -c $(CFLAGS) -shared -o $(NAME).$(VERSION).so weyl.c  $(LDFLAGS)
+	$(CC) -c $(CFLAGS) -shared -o $(NAME).so weyl.c  $(LDFLAGS)
 endif
 ifeq ($(UNAME_S),Darwin)
 $(NAME).$(VERSION).dylib:
-	$(CC) -c $(CFLAGS) -dynamiclib -o $(NAME).$(VERSION).dylib weyl.c  $(LDFLAGS)
+	$(CC) -c $(CFLAGS) -dynamiclib -o $(NAME).dylib weyl.c  $(LDFLAGS)
 endif
 
 .PHONY: install
 install: 
 	cp weyl.h $(INCDIR)
 ifeq ($(UNAME_S),Linux)
-	cp $(NAME).$(VERSION).so $(LIBDIR)
+	cp $(NAME).so $(LIBDIR)
 endif
 ifeq ($(UNAME_S),Darwin)
-	cp $(NAME).$(VERSION).dylib $(LIBDIR)
-	ln -s $(LIBDIR)/$(NAME).$(VERSION).dylib $(LIBDIR)/$(NAME).dylib
+	cp $(NAME).dylib $(LIBDIR)
+	ln -s $(LIBDIR)/$(NAME).dylib $(LIBDIR)/$(NAME).dylib
 endif
 
 uninstall:
 	rm -f $(INCDIR)/weyl.h
 ifeq ($(UNAME_S),Linux)
-	rm -f $(LIBDIR)/$(NAME).$(VERSION).so
+	rm -f $(LIBDIR)/$(NAME).so
 	rm -f $(LIBDIR)/$(VERSION).so
 endif
 ifeq ($(UNAME_S),Darwin)
-	rm -f $(LIBDIR)/$(NAME).$(VERSION).dylib
+	rm -f $(LIBDIR)/$(NAME).dylib
 	rm -f $(LIBDIR)/$(NAME).dylib
 endif
 
@@ -51,4 +51,4 @@ test: clean
 .PHONY: clean
 clean:
 	rm -f $(TSTDIR)/$(TSTDIR)
-	rm -f $(NAME).$(VERSION).dylib
+	rm -f $(NAME).dylib
